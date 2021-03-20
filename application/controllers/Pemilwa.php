@@ -6,9 +6,4 @@ class Pemilwa extends CI_Controller {
 	{
 		$this->load->view('pemilwa');
 	}
-
-    public function lala()
-	{
-		$this->load->view('pemilwa');
-	}
 }
