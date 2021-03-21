@@ -62,7 +62,10 @@ class Pemilwa extends CI_Controller {
 				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
 				);
 			}
-			$add = $this->m_pemilwa->insert_tabel($data, 'admin');
+			$where = array(
+				'id_admin' =>$this->input->post('id_admin')
+			);
+			$add = $this->m_pemilwa->update_tabel($data, $where, 'admin');
 			redirect('Pemilwa/admin');
 	}
 	//delete admin
@@ -70,12 +73,6 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('id_admin' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'admin');
-		if ($delete == TRUE) {
-			echo "berhasil";
-		}
-		else {
-			echo "tidak berhasil";
-		}
 		redirect('Pemilwa/admin', 'refresh');
 	}
 
@@ -93,20 +90,37 @@ class Pemilwa extends CI_Controller {
 	//paslon
 	public function paslon()
 	{
-		$this->load->view('paslon');
+		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('admin/paslon', $data);
 	}
-
+	//view addpaslon
+	public function viewaddpaslon()
+	{
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('admin/tambah_paslon', $data);
+	}
+	//view updatepaslon
+	public function viewupdatepaslon($id)
+	{
+		$where = array(
+			'no_urut' =>$id
+		);
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$data['paslon'] = $this->m_pemilwa->detail_tabel($where, 'pasang_calon');
+		$this->load->view('admin/ubah_paslon', $data);
+	}
 	//add paslon
 	public function addpaslon()
 	{ 
 			$config['upload_path'] = './assets/image/paslon';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size']  = '100000';
-			$config['overwrite']  = true;
 			$config['file_name']  = $this->input->post('nim_ketua');
 			$this->load->library('upload', $config);
 
 			if ( ! $this->upload->do_upload('gambar')){
+				echo $this->upload->display_errors();
 				return false;
 			}
 		else{
@@ -121,13 +135,7 @@ class Pemilwa extends CI_Controller {
 				'misi' => $this->input->post('misi')
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'pasang_calon');
-			if ($add == TRUE)
-			{
-				echo "berhasil tambah";
-			} else {
-				echo "gagal tambah";
-			}
-			redirect('Pemilwa/admin');
+			redirect('Pemilwa/paslon');
 		}
 	}
 
@@ -139,7 +147,6 @@ class Pemilwa extends CI_Controller {
 			$config['upload_path'] = './assets/image/paslon';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size']  = '200000';
-			$config['overwrite']  = true;
 			$config['file_name']  = $this->input->post('nim_ketua');
 			$this->load->library('upload', $config);
 
@@ -161,13 +168,7 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 					);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'pasang_calon');
-				if ($update == TRUE) {
-					echo "berhasil";
-				}
-				else {
-					echo "tidak berhasil";
-				}
-				redirect('Pemilwa/admin', 'refresh');
+				redirect('Pemilwa/paslon', 'refresh');
 			}
 			
 		}
@@ -185,13 +186,7 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 				);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'pasang_calon');
-				if ($update == TRUE) {
-					echo "berhasil";
-				}
-				else {
-					echo "tidak berhasil";
-				}
-				redirect('Pemilwa/admin', 'refresh');
+				redirect('Pemilwa/paslon', 'refresh');
 			}
 	}
 
@@ -206,7 +201,7 @@ class Pemilwa extends CI_Controller {
 		else {
 			echo "tidak berhasil";
 		}
-		redirect('Pemilwa/admin', 'refresh');
+		redirect('Pemilwa/paslon', 'refresh');
 	}
 
 	//detil paslon
@@ -221,9 +216,27 @@ class Pemilwa extends CI_Controller {
 	}
 
 	//bpm
-	public function calon_bpm()
+	public function bpm()
 	{
-		$this->load->view('bpm');
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
+		$this->load->view('admin/calonbpm', $data);
+	}
+	//view addpaslon
+	public function viewaddbpm()
+	{
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('admin/tambah_calonbpm', $data);
+	}
+	//view updatepaslon
+	public function viewupdatebpm($id)
+	{
+		$where = array(
+			'no_urut' =>$id
+		);
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$data['calon'] = $this->m_pemilwa->detail_tabel($where, 'calon_bpm');
+		$this->load->view('admin/ubah_calonbpm', $data);
 	}
 	//add calon bpm
 	public function addbpm()
@@ -231,7 +244,6 @@ class Pemilwa extends CI_Controller {
 			$config['upload_path'] = './assets/image/bpm';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size']  = '100000';
-			$config['overwrite']  = true;
 			$config['file_name']  = $this->input->post('nim');
 			$this->load->library('upload', $config);
 
@@ -248,13 +260,7 @@ class Pemilwa extends CI_Controller {
 				'misi' => $this->input->post('misi')
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'calon_bpm');
-			if ($add == TRUE)
-			{
-				echo "berhasil tambah";
-			} else {
-				echo "gagal tambah";
-			}
-			redirect('Pemilwa/admin');
+			redirect('Pemilwa/bpm');
 		}
 	}
 	//update calon bpm
@@ -265,7 +271,6 @@ class Pemilwa extends CI_Controller {
 			$config['upload_path'] = './assets/image/bpm';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size']  = '200000';
-			$config['overwrite']  = true;
 			$config['file_name']  = $this->input->post('nim');
 			$this->load->library('upload', $config);
 
@@ -285,13 +290,7 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 					);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'calon_bpm');
-				if ($update == TRUE) {
-					echo "berhasil";
-				}
-				else {
-					echo "tidak berhasil";
-				}
-				redirect('Pemilwa/admin', 'refresh');
+				redirect('Pemilwa/bpm', 'refresh');
 			}
 			
 		}
@@ -307,13 +306,7 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 				);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'calon_bpm');
-				if ($update == TRUE) {
-					echo "berhasil";
-				}
-				else {
-					echo "tidak berhasil";
-				}
-				redirect('Pemilwa/admin', 'refresh');
+				redirect('Pemilwa/bpm', 'refresh');
 			}
 	}
 	//delete calon bpm
@@ -321,13 +314,7 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('no_urut' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'calon_bpm');
-		if ($delete == TRUE) {
-			echo "berhasil";
-		}
-		else {
-			echo "tidak berhasil";
-		}
-		redirect('Pemilwa/admin', 'refresh');
+		redirect('Pemilwa/bpm', 'refresh');
 	}
 
 	//detil paslon
