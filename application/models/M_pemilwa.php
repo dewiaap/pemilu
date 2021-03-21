@@ -6,7 +6,7 @@ class M_Pemilwa extends CI_Model {
 		$this->load->database(); 
 	  }  
 	
-	//get tabel
+	//get 
     public function get_tabel($tabel)
 	{
 		$query = $this->db->get($tabel);
