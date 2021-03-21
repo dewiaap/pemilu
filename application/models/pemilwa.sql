@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2021 at 04:35 PM
+-- Generation Time: Mar 21, 2021 at 04:04 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -41,15 +41,12 @@ CREATE TABLE `calon_bpm` (
 --
 
 CREATE TABLE `pasang_calon` (
-  `id` int(11) NOT NULL,
   `no_urut` int(11) NOT NULL,
-  `nama_ketua` varchar(60) NOT NULL,
-  `nama_wakil` varchar(60) NOT NULL,
+  `nama_pasangan` varchar(100) NOT NULL,
   `nim_ketua` varchar(15) NOT NULL,
   `nim_wakil` varchar(15) NOT NULL,
   `id_prodi_ketua` int(11) NOT NULL,
-  `id_prodi_wakil` int(11) NOT NULL,
-  `nim_pemilih` varchar(15) NOT NULL
+  `id_prodi_wakil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -63,7 +60,9 @@ CREATE TABLE `pemilih` (
   `password` varchar(40) NOT NULL,
   `nama_lengkap` varchar(60) NOT NULL,
   `angkatan` varchar(4) NOT NULL,
-  `id_prodi` int(11) NOT NULL
+  `id_prodi` int(11) NOT NULL,
+  `no_pilihan_pasangan` int(11) NOT NULL,
+  `no_pilihan_bpm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -94,18 +93,20 @@ ALTER TABLE `calon_bpm`
 -- Indexes for table `pasang_calon`
 --
 ALTER TABLE `pasang_calon`
+  ADD PRIMARY KEY (`no_urut`),
   ADD KEY `nim_ketua` (`nim_ketua`),
   ADD KEY `nim_wakil` (`nim_wakil`),
   ADD KEY `id_prodi_ketua` (`id_prodi_ketua`),
-  ADD KEY `id_prodi_wakil` (`id_prodi_wakil`),
-  ADD KEY `nim_pemilih` (`nim_pemilih`);
+  ADD KEY `id_prodi_wakil` (`id_prodi_wakil`);
 
 --
 -- Indexes for table `pemilih`
 --
 ALTER TABLE `pemilih`
   ADD PRIMARY KEY (`nim`),
-  ADD KEY `id_prodi` (`id_prodi`);
+  ADD KEY `id_prodi` (`id_prodi`),
+  ADD KEY `no_pilihan_pasangan` (`no_pilihan_pasangan`),
+  ADD KEY `no_pilihan_bpm` (`no_pilihan_bpm`);
 
 --
 -- Indexes for table `prodi`
@@ -121,6 +122,12 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `calon_bpm`
 --
 ALTER TABLE `calon_bpm`
+  MODIFY `no_urut` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pasang_calon`
+--
+ALTER TABLE `pasang_calon`
   MODIFY `no_urut` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -147,14 +154,15 @@ ALTER TABLE `pasang_calon`
   ADD CONSTRAINT `pasang_calon_ibfk_1` FOREIGN KEY (`nim_ketua`) REFERENCES `pemilih` (`nim`),
   ADD CONSTRAINT `pasang_calon_ibfk_2` FOREIGN KEY (`nim_wakil`) REFERENCES `pemilih` (`nim`),
   ADD CONSTRAINT `pasang_calon_ibfk_3` FOREIGN KEY (`id_prodi_ketua`) REFERENCES `prodi` (`id_prodi`),
-  ADD CONSTRAINT `pasang_calon_ibfk_4` FOREIGN KEY (`id_prodi_wakil`) REFERENCES `prodi` (`id_prodi`),
-  ADD CONSTRAINT `pasang_calon_ibfk_5` FOREIGN KEY (`nim_pemilih`) REFERENCES `pemilih` (`nim`);
+  ADD CONSTRAINT `pasang_calon_ibfk_4` FOREIGN KEY (`id_prodi_wakil`) REFERENCES `prodi` (`id_prodi`);
 
 --
 -- Constraints for table `pemilih`
 --
 ALTER TABLE `pemilih`
-  ADD CONSTRAINT `pemilih_ibfk_1` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`);
+  ADD CONSTRAINT `pemilih_ibfk_1` FOREIGN KEY (`id_prodi`) REFERENCES `prodi` (`id_prodi`),
+  ADD CONSTRAINT `pemilih_ibfk_2` FOREIGN KEY (`no_pilihan_pasangan`) REFERENCES `pasang_calon` (`no_urut`),
+  ADD CONSTRAINT `pemilih_ibfk_3` FOREIGN KEY (`no_pilihan_bpm`) REFERENCES `calon_bpm` (`no_urut`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
