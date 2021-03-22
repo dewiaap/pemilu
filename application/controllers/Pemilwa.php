@@ -46,6 +46,12 @@ class Pemilwa extends CI_Controller {
 				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'admin');
+			if ($add) {
+				$this->session->set_flashdata('admin', 'sukses tambah admin');
+			}
+			else {
+				$this->session->set_flashdata('admin', 'gagal tambah admin');
+			}
 			redirect('Pemilwa/admin');
 	}
 	//update admin
@@ -65,7 +71,13 @@ class Pemilwa extends CI_Controller {
 			$where = array(
 				'id_admin' =>$this->input->post('id_admin')
 			);
-			$add = $this->m_pemilwa->update_tabel($data, $where, 'admin');
+			$update = $this->m_pemilwa->update_tabel($data, $where, 'admin');
+			if ($update) {
+				$this->session->set_flashdata('admin', 'sukses ubah admin');
+			}
+			else {
+				$this->session->set_flashdata('admin', 'gagal ubah admin');
+			}
 			redirect('Pemilwa/admin');
 	}
 	//delete admin
@@ -73,6 +85,12 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('id_admin' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'admin');
+		if ($delete) {
+			$this->session->set_flashdata('admin', 'sukses hapus admin');
+		}
+		else {
+			$this->session->set_flashdata('admin', 'gagal hapus admin');
+		}
 		redirect('Pemilwa/admin', 'refresh');
 	}
 
@@ -135,6 +153,12 @@ class Pemilwa extends CI_Controller {
 				'misi' => $this->input->post('misi')
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'pasang_calon');
+			if ($add) {
+				$this->session->set_flashdata('paslon', 'sukses tambah paslon');
+			}
+			else {
+				$this->session->set_flashdata('paslon', 'gagal tambah paslon');
+			}
 			redirect('Pemilwa/paslon');
 		}
 	}
@@ -168,6 +192,12 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 					);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'pasang_calon');
+				if ($update) {
+					$this->session->set_flashdata('paslon', 'sukses ubah paslon');
+				}
+				else {
+					$this->session->set_flashdata('paslon', 'gagal ubah paslon');
+				}
 				redirect('Pemilwa/paslon', 'refresh');
 			}
 			
@@ -186,6 +216,12 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 				);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'pasang_calon');
+				if ($update) {
+					$this->session->set_flashdata('paslon', 'sukses ubah paslon');
+				}
+				else {
+					$this->session->set_flashdata('paslon', 'gagal ubah paslon');
+				}
 				redirect('Pemilwa/paslon', 'refresh');
 			}
 	}
@@ -195,11 +231,11 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('no_urut' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'pasang_calon');
-		if ($delete == TRUE) {
-			echo "berhasil";
+		if ($delete) {
+			$this->session->set_flashdata('paslon', 'sukses hapus paslon');
 		}
 		else {
-			echo "tidak berhasil";
+			$this->session->set_flashdata('paslon', 'gagal hapus paslon');
 		}
 		redirect('Pemilwa/paslon', 'refresh');
 	}
@@ -260,6 +296,12 @@ class Pemilwa extends CI_Controller {
 				'misi' => $this->input->post('misi')
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'calon_bpm');
+			if ($add) {
+				$this->session->set_flashdata('bpm', 'sukses tambah calon bpm');
+			}
+			else {
+				$this->session->set_flashdata('bpm', 'gagal tambah calon bpm');
+			}
 			redirect('Pemilwa/bpm');
 		}
 	}
@@ -290,6 +332,12 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 					);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'calon_bpm');
+				if ($update) {
+					$this->session->set_flashdata('bpm', 'sukses ubah calon bpm');
+				}
+				else {
+					$this->session->set_flashdata('bpm', 'gagal ubah calon bpm');
+				}
 				redirect('Pemilwa/bpm', 'refresh');
 			}
 			
@@ -306,6 +354,12 @@ class Pemilwa extends CI_Controller {
 					'no_urut' => $this->input->post('no_urut')
 				);
 				$update = $this->m_pemilwa->update_tabel($data, $where, 'calon_bpm');
+				if ($update) {
+					$this->session->set_flashdata('bpm', 'sukses ubah calon bpm');
+				}
+				else {
+					$this->session->set_flashdata('bpm', 'gagal ubah calon bpm');
+				}
 				redirect('Pemilwa/bpm', 'refresh');
 			}
 	}
@@ -314,6 +368,12 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('no_urut' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'calon_bpm');
+		if ($delete) {
+			$this->session->set_flashdata('bpm', 'sukses hapus calon bpm');
+		}
+		else {
+			$this->session->set_flashdata('bpm', 'gagal hapus calon bpm');
+		}
 		redirect('Pemilwa/bpm', 'refresh');
 	}
 
@@ -351,6 +411,12 @@ class Pemilwa extends CI_Controller {
 				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'pemilih');
+			if ($add) {
+				$this->session->set_flashdata('pemilih', 'sukses tambah pemilih');
+			}
+			else {
+				$this->session->set_flashdata('pemilih', 'gagal tambah pemilih');
+			}
 			redirect('Pemilwa/pemilih');
 	}
 	//update pemilih
@@ -376,6 +442,12 @@ class Pemilwa extends CI_Controller {
 			'nim' => $this->input->post('nim')
 		);
 		$update = $this->m_pemilwa->update_tabel($data, $where, 'pemilih');
+		if ($update) {
+			$this->session->set_flashdata('pemilih', 'sukses ubah pemilih');
+		}
+		else {
+			$this->session->set_flashdata('pemilih', 'gagal ubah pemilih');
+		}
 		redirect('Pemilwa/pemilih', 'refresh');
 	}
 	//delete pemilih
@@ -383,6 +455,12 @@ class Pemilwa extends CI_Controller {
 	{
 		$where = array('nim' => $id);
 		$delete = $this->m_pemilwa->delete_tabel($where, 'pemilih');
+		if ($delete) {
+			$this->session->set_flashdata('pemilih', 'sukses hapus pemilih');
+		}
+		else {
+			$this->session->set_flashdata('pemilih', 'gagal hapus pemilih');
+		}
 		redirect('Pemilwa/pemilih', 'refresh');
 	}
 	//login

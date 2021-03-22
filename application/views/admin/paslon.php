@@ -5,6 +5,10 @@
 <body>
     <h1>Paslon</h1>
     <a href="<?=base_url()?>pemilwa/viewaddpaslon"><button>tambah</button></a>
+    <br>
+    <?php if ($this->session->flashdata('paslon')!=null): ?>
+	<div class="alert"><?= $this->session->flashdata('paslon');?></div>
+	<?php endif?>
     <table border="1">
     <tr>
     <th>Nama Pasangan</th>

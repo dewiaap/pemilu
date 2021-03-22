@@ -5,6 +5,10 @@
 <body>
     <h1>Paslon</h1>
     <a href="<?=base_url()?>pemilwa/viewaddbpm"><button>tambah</button></a>
+    <br>
+    <?php if ($this->session->flashdata('bpm')!=null): ?>
+	<div class="alert"><?= $this->session->flashdata('bpm');?></div>
+	<?php endif?>
     <table border="1">
     <tr>
     <th>Nama Lengkap</th>

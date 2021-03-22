@@ -5,6 +5,10 @@
 <body>
     <h1>Pemilih</h1>
     <a href="<?=base_url()?>pemilwa/viewaddpemilih"><button>tambah</button></a>
+    <br>
+    <?php if ($this->session->flashdata('pemilih')!=null): ?>
+	<div class="alert"><?= $this->session->flashdata('pemilih');?></div>
+	<?php endif?>
     <table border="1">
     <tr>
     <th>Nama Lengkap</th>
