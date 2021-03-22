@@ -464,11 +464,90 @@ class Pemilwa extends CI_Controller {
 		redirect('Pemilwa/pemilih', 'refresh');
 	}
 	//login
+	public function login() {
+		$this->load->view('user/login');
+	}
 
+	public function login_validation() {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('nim', 'NIM', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		if ($this->form_validation->run()) {
+			$nim = $this->input->post('nim');
+			$admin_username = $this->input->post('nim');
+			$password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+			//model function
+			$this->load->model('m_pemilwa');
+			if ($this->m_pemilwa->can_login_user($nim, $password)) {
+				$session_data = array(
+					'nim' => $nim
+				);
+				$this->session->set_userdata($session_data);
+				redirect('enter_user');
+				
+			} else if ($this->m_pemilwa->can_login_admin($admin_username, $password)) {
+				$session_data = array(
+					'nim' => $admin_username
+				);
+				$this->session->set_userdata($session_data);
+				redirect('enter_admin');
+			} else {
+				$this->session->set_flashdata('error','NIM atau Password salah');
+				redirect('login');
+			}
+		} else {
+			$this->login();
+		}
+		
+	}
+	public function enter_user() {
+		if ($this->session->set_userdata('nim') != '') {
+			redirect('vote');
+		} else {
+			redirect('login');
+		}
+	}
+	public function enter_admin() {
+		if ($this->session->set_userdata('nim') != '') {
+			redirect('admin');
+		} else {
+			redirect('login');
+		}
+	}
+	
 	//logout
+	public function logout() {
+		$this->session->unset_userdata('nim');
+		redirect('login');
+	}
 
 	//add voting paslon
-
+	public function vote_paslon() {
+		$this->load->view('user/vote_paslon');
+	}
+	
+	public function add_vote_paslon() {
+		$nim_pemilih = $this->session->userdata("nim"); 
+		$pilihan = array(
+			'no_pilihan_pasangan' => $this->input->post('dipilih')
+			);
+		$this->m_pemilwa->update_tabel($pilihan, $nim_pemilih, 'pemilih');
+		redirect('user/vote_bpm');
+	}
+	
 	//add voting bpm
+	public function vote_bpm() {
+		$this->load->view('user/vote_bpm');
+	}
+
+	public function add_vote_bpm() {
+		$nim_pemilih = $this->session->userdata("nim"); 
+		$pilihan = array(
+			'no_pilihan_bpm' => $this->input->post('dipilih')
+			);
+		$this->m_pemilwa->update_tabel($pilihan, $nim_pemilih, 'pemilih');
+		$this->logout();
+	}
+
 
 }
