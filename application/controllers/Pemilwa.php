@@ -222,13 +222,13 @@ class Pemilwa extends CI_Controller {
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
 		$this->load->view('admin/calonbpm', $data);
 	}
-	//view addpaslon
+	//view addbpm
 	public function viewaddbpm()
 	{
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$this->load->view('admin/tambah_calonbpm', $data);
 	}
-	//view updatepaslon
+	//view updatebpm
 	public function viewupdatebpm($id)
 	{
 		$where = array(
@@ -317,15 +317,73 @@ class Pemilwa extends CI_Controller {
 		redirect('Pemilwa/bpm', 'refresh');
 	}
 
-	//detil paslon
-	public function detilbpm()
+	//pemilih
+	public function pemilih()
 	{
-		$id = $this->uri->segment(3);
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$data['pemilih'] = $this->m_pemilwa->get_tabel('pemilih');
+		$this->load->view('admin/pemilih', $data);
+	}
+	//view addpemilih
+	public function viewaddpemilih()
+	{
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('admin/tambah_pemilih', $data);
+	}
+	//view updatepemilih
+	public function viewupdatepemilih($id)
+	{
 		$where = array(
-			'no_urut' => $id
+			'nim' =>$id
 		);
-		$data = $this->m_pemilwa->detail_tabel($where, 'calon_bpm');
-		echo json_encode($data);
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$data['pemilih'] = $this->m_pemilwa->detail_tabel($where, 'pemilih');
+		$this->load->view('admin/ubah_pemilih', $data);
+	}
+	//add pemilih
+	public function addpemilih()
+	{ 
+			$data = array(
+				'nama_lengkap' => $this->input->post('nama_lengkap'),
+				'nim' => $this->input->post('nim'),
+				'id_prodi' => $this->input->post('id_prodi'),
+				'angkatan' => $this->input->post('angkatan'),
+				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				);
+			$add = $this->m_pemilwa->insert_tabel($data, 'pemilih');
+			redirect('Pemilwa/pemilih');
+	}
+	//update pemilih
+	public function updatepemilih()
+	{
+		if($this->input->post('password') == ""){
+			echo "aku";
+			$data = array(
+				'nama_lengkap' => $this->input->post('nama_lengkap'),
+				'id_prodi' => $this->input->post('id_prodi'),
+				'angkatan' => $this->input->post('angkatan'),
+			);
+		}else{
+			echo "kamu";
+			$data = array(
+				'nama_lengkap' => $this->input->post('nama_lengkap'),
+				'id_prodi' => $this->input->post('id_prodi'),
+				'angkatan' => $this->input->post('angkatan'),
+				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				);
+		}
+		$where = array(
+			'nim' => $this->input->post('nim')
+		);
+		$update = $this->m_pemilwa->update_tabel($data, $where, 'pemilih');
+		redirect('Pemilwa/pemilih', 'refresh');
+	}
+	//delete pemilih
+	function deletepemilih($id)
+	{
+		$where = array('nim' => $id);
+		$delete = $this->m_pemilwa->delete_tabel($where, 'pemilih');
+		redirect('Pemilwa/pemilih', 'refresh');
 	}
 	//login
 
