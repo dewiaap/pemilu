@@ -1,0 +1,47 @@
+body{
+  /* background-image:url('../../../public/img/source/3.jpg'); */
+  background-size:cover;
+  background-color: #abe0ee;
+}
+
+h1{
+  text-align:center;
+  margin-top:200px;
+}
+  
+div.container{
+  margin-top:200px;
+  background-color:rgb(17, 20, 20);
+  width:50%;
+  padding:5px;
+  border-radius:20px;
+  opacity: 0.8;
+  transition-duration: 500ms;
+  transition-property: opacity;
+}
+
+div.container:hover{
+  opacity: 0.9;
+}
+
+div.container:active{
+  opacity:1;
+}
+
+form{
+  margin-top:20px;
+
+}
+
+h2{
+  text-align:center;
+}
+
+.column{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+#submit{
+  cursor:default;
+}
