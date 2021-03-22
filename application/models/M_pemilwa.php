@@ -56,9 +56,32 @@ class M_Pemilwa extends CI_Model {
 	//get count pemilih
 
 	//get count pemilih by prodi
+	function get_count_prodi($no_urut, $id_prodi) {
+		$query = $this->db
+		->where(['no_pilihan_pasangan'=>$no_urut,
+		'id_prodi' => $id_prodi])
+		->from('pemilih')
+		->count_all_results();
+		return $query;
+	}
 
 	//get count pemilih by pasang_calon
+	function get_count_paslon($no_urut) {
+		// SELECT no_pilihan_pasangan, COUNT(no_pilihan_pasangan) as jumlah FROM `pemilih` JOIN pasang_calon on no_pilihan_pasangan = no_urut
+		$query = $this->db
+		->where('no_pilihan_pasangan', $no_urut)
+		->from('pemilih')
+		->count_all_results();
+		return $query;
+	}
 
 	//get count pemilih by calon_bem
+	function get_count_bpm($no_urut) {
+		$query = $this->db
+		->where('no_pilihan_bpm', $no_urut)
+		->from('pemilih')
+		->count_all_results();
+		return $query;
+	}
 }
 ?>
