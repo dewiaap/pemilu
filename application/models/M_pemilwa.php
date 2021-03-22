@@ -67,7 +67,6 @@ class M_Pemilwa extends CI_Model {
 
 	//get count pemilih by pasang_calon
 	function get_count_paslon($no_urut) {
-		// SELECT no_pilihan_pasangan, COUNT(no_pilihan_pasangan) as jumlah FROM `pemilih` JOIN pasang_calon on no_pilihan_pasangan = no_urut
 		$query = $this->db
 		->where('no_pilihan_pasangan', $no_urut)
 		->from('pemilih')
