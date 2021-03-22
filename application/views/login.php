@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style2.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/css/style2.css">
     <title>Login</title>
     <style type="text/css">
       body{
-        background-image:url('assets/image/filkom.png');
+        background-image:url('<?=base_url();?>assets/image/filkom.png');
       }
     </style>
 </head>
@@ -38,8 +38,8 @@
           </div>
         </div>
     </form>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?=base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
