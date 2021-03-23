@@ -82,5 +82,29 @@ class M_Pemilwa extends CI_Model {
 		->count_all_results();
 		return $query;
 	}
+	function can_login_user($nim, $password) {
+		$this->db->where('nim', $nim);
+		$this->db->where('password', $password);
+		$query = $this->db->get('pemilih');
+
+		//ketika nim dan password ada
+		if($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function can_login_admin($username, $password) {
+		$this->db->where('nim', $username);
+		$this->db->where('password', $password);
+		$query = $this->db->get('admin');
+
+		//ketika nim dan password ada
+		if($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>
