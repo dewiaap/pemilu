@@ -19,24 +19,24 @@
     <div class="form-group row">
       <label for="username" class="col-sm-2 col-form-label">Username</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
       </div>
     </div>
      <div class="form-group row">
       <label for="nama" class="col-sm-2 col-form-label">Nama</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+        <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Nama" required>
       </div>
     </div>
   <div class="form-group row">
     <label for="password" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-10">
-      <a href="login.php" class="btn btn-success">Login</a>
+      <a href="<?=base_url()?>pemilwa/logout" class="btn btn-success">Login</a>
       <button type="submit" class="btn btn-primary" name="register">Register</button>
     </div>
   </div>

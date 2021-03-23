@@ -6,10 +6,10 @@
 
 <body>
     <h2>Paslon BEM</h2>
-    <?php
-    echo '<ul>';
-	<form method="post" action="<?=base_url()?>pemilwa/vote_paslon">
-    	foreach ($bem as $b) { ?>
+	<form method="post" action="<?=base_url()?>pemilwa/add_vote_paslon">
+    <ul>
+    	<?php foreach ($bem as $b) { ?>
+        
             <li>
                 <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>">
                 <p>nama pasangan : <?= $b->nama_pasangan ?></p>
@@ -18,12 +18,13 @@
                 <!-- kalo bisa dibuat drop down untuk visi misi, kalo nggak ya dihapus gakpapa atau gimana -->
                 <p>visi : <?= $b->visi ?></p>
                 <p>misi : <?= $b->misi ?>
-                <input type="radio" name="dipilih" value="<?= $b->no_urut ?>">
+                <br>
+                <input type="radio" name="dipilih" value="<?= $b->no_urut ?>">Pilih
             </li>
     	<?php } ?>
-		<input type="submit" name="dipilih">Pilih
+		<input type="submit">
+        </ul>
 	</form>
-    </ul>
 
 
 </body>

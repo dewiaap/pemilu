@@ -53,13 +53,28 @@ class M_Pemilwa extends CI_Model {
 		}
 	}
 	
-	//get count pemilih
-
-	//get count pemilih by prodi
-	function get_count_prodi($no_urut, $id_prodi) {
+	//get count pemilih done
+	function get_count_pemilih_done() {
 		$query = $this->db
-		->where(['no_pilihan_pasangan'=>$no_urut,
-		'id_prodi' => $id_prodi])
+		->where('no_pilihan_pasangan !=', null)
+		->where('no_pilihan_bpm !=', null)
+		->from('pemilih')
+		->count_all_results();
+		return $query;
+	}
+	//get count pemilih all
+	function get_count_pemilih() {
+		$query = $this->db
+		->from('pemilih')
+		->count_all_results();
+		return $query;
+	}
+	//get count pemilih by prodi
+	function get_count_prodi($id_prodi) {
+		$query = $this->db
+		->where('id_prodi' , $id_prodi)
+		->where('no_pilihan_pasangan !=', null)
+		->where('no_pilihan_bpm !=', null)
 		->from('pemilih')
 		->count_all_results();
 		return $query;
@@ -82,27 +97,47 @@ class M_Pemilwa extends CI_Model {
 		->count_all_results();
 		return $query;
 	}
-	function can_login_user($nim, $password) {
-		$this->db->where('nim', $nim);
-		$this->db->where('password', $password);
-		$query = $this->db->get('pemilih');
-
-		//ketika nim dan password ada
-		if($query->num_rows() > 0) {
+	function can_login_user($where, $userpass) {
+		$query = $this->db->where($where)->get('pemilih');
+        if($this->db->affected_rows()>0){
+			$data_login = $query->row();
+			if (password_verify($userpass, $data_login->password)) {
+            $data_session = array(
+                'username' => $data_login->nim,
+				'login' => TRUE,
+				'isVote' => ($data_login->no_pilihan_bpm != null || $data_login->no_pilihan_pasangan != null) ? TRUE: FALSE,
+				'level' => 'user'
+            );
+            $this->session->set_userdata($data_session);
 			return true;
-		} else {
+			}
+			else{
+				return false;
+			}
+		}
+		else{
 			return false;
 		}
 	}
-	function can_login_admin($username, $password) {
-		$this->db->where('nim', $username);
-		$this->db->where('password', $password);
-		$query = $this->db->get('admin');
-
-		//ketika nim dan password ada
-		if($query->num_rows() > 0) {
+	function can_login_admin($where, $userpass) {
+		$query = $this->db->where($where)->get('admin');
+        if($this->db->affected_rows()>0){
+			$data_login = $query->row();
+			if (password_verify($userpass, $data_login->password)) {
+            $data_session = array(
+                'username' => $data_login->username,
+				'login' => TRUE,
+				'isVote' => FALSE,
+				'level' => 'admin'
+            );
+            $this->session->set_userdata($data_session);
 			return true;
-		} else {
+			}
+			else{
+				return false;
+			}
+		}
+		else{
 			return false;
 		}
 	}

@@ -1,13 +1,13 @@
 <html>
 <head>
-<title>Admin</title>
+<title></title>
 </head>
 <body>
     <h1>Admin</h1>
     <a href="<?=base_url()?>pemilwa/viewaddadmin"><button>tambah</button></a>
     <br>
-    <?php if ($this->session->flashdata('admin')!=null): ?>
-	<div class="alert"><?= $this->session->flashdata('admin');?></div>
+    <?php if ($this->session->flashdata('pesan')!=null): ?>
+	<div class="alert" role="alert" style="display:none;"><?= $this->session->flashdata('pesan');?></div>
 	<?php endif?>
     <table border="1">
     <tr>

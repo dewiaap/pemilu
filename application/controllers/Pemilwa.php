@@ -10,32 +10,70 @@ class Pemilwa extends CI_Controller {
 
 	//home
 	public function index()
-	{
+	{	
+		if ($this->session->userdata('login')) {
 		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
 		$this->load->view('user/pemilwa', $data);
+		}
+		else{
+			redirect('login');
+		}
 	}
 
+	//dashboard admin
+	public function dashboard(){
+		$data['pemilih_all'] = $this->m_pemilwa->get_count_pemilih();
+		$data['pemilih_done'] = $this->m_pemilwa->get_count_pemilih_done();
+		$prodi = $this->m_pemilwa->get_tabel('prodi');
+		for($i=0;$i<count($prodi);$i++){
+			$data['prodi'][$i] = $this->m_pemilwa->get_count_prodi($prodi[$i]->id_prodi);
+			$data['nama_prodi'][$i] = $prodi[$i]->prodi;
+		}
+		$paslon = $this->m_pemilwa->get_tabel('pasang_calon');
+		for($i=0;$i<count($paslon);$i++){
+			$data['paslon'][$i] = $this->m_pemilwa->get_count_paslon($paslon[$i]->no_urut);
+			$data['nama_paslon'][$i] = $paslon[$i]->nama_pasangan;
+		}
+		$bpm = $this->m_pemilwa->get_tabel('calon_bpm');
+		for($i=0;$i<count($paslon);$i++){
+			$data['bpm'][$i] = $this->m_pemilwa->get_count_bpm($bpm[$i]->no_urut);
+			$data['nama_bpm'][$i] = $bpm[$i]->nama_lengkap;
+		}
+		$this->load->view('admin/dashboard', $data);
+	}
 	//admin
 	public function admin()
 	{
+		if ($this->session->userdata('login')) {
 		$data['admin'] = $this->m_pemilwa->get_tabel('admin');
-		$this->load->view('admin/admin', $data);
+		$this->load->view('admin/admin', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//view addadmin
 	public function viewaddadmin()
 	{
+		if ($this->session->userdata('login')) {
 		$this->load->view('admin/tambah_admin');
+		}else{
+			redirect('login');
+		}
 	}
 	//view updateadmin
 	public function viewupdateadmin($id)
 	{
+		if ($this->session->userdata('login')) {
 		$where = array(
 			'id_admin' =>$id
 		);
 		$data['admin'] = $this->m_pemilwa->detail_tabel($where, 'admin');
-		$this->load->view('admin/ubah_admin', $data);
+		$this->load->view('admin/ubah_admin', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//add admin
 	public function addadmin()
@@ -43,7 +81,7 @@ class Pemilwa extends CI_Controller {
 			$data = array(
 				'nama_admin' => $this->input->post('nama_admin'),
 				'username' => $this->input->post('username'),
-				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'admin');
 			if ($add) {
@@ -65,7 +103,7 @@ class Pemilwa extends CI_Controller {
 			$data = array(
 				'nama_admin' => $this->input->post('nama_admin'),
 				'username' => $this->input->post('username'),
-				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
 				);
 			}
 			$where = array(
@@ -94,39 +132,40 @@ class Pemilwa extends CI_Controller {
 		redirect('Pemilwa/admin', 'refresh');
 	}
 
-	//detil admin
-	public function detiladmin()
-	{
-		$id = $this->uri->segment(3);
-		$where = array(
-			'id_admin' => $id
-		);
-		$data = $this->m_pemilwa->detail_tabel($where, 'admin');
-		echo json_encode($data);
-	}
-
 	//paslon
 	public function paslon()
 	{
+		if ($this->session->userdata('login')) {
 		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$this->load->view('admin/paslon', $data);
+		}else{
+			redirect('login');
+		}
 	}
 	//view addpaslon
 	public function viewaddpaslon()
 	{
+		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$this->load->view('admin/tambah_paslon', $data);
+		}else{
+			redirect('login');
+		}
 	}
 	//view updatepaslon
 	public function viewupdatepaslon($id)
 	{
+		if ($this->session->userdata('login')) {
 		$where = array(
 			'no_urut' =>$id
 		);
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['paslon'] = $this->m_pemilwa->detail_tabel($where, 'pasang_calon');
 		$this->load->view('admin/ubah_paslon', $data);
+	}else{
+		redirect('login');
+	}
 	}
 	//add paslon
 	public function addpaslon()
@@ -240,39 +279,40 @@ class Pemilwa extends CI_Controller {
 		redirect('Pemilwa/paslon', 'refresh');
 	}
 
-	//detil paslon
-	public function detilpaslon()
-	{
-		$id = $this->uri->segment(3);
-		$where = array(
-			'no_urut' => $id
-		);
-		$data = $this->m_pemilwa->detail_tabel($where, 'pasang_calon');
-		echo json_encode($data);
-	}
-
 	//bpm
 	public function bpm()
 	{
+		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
-		$this->load->view('admin/calonbpm', $data);
+		$this->load->view('admin/calonbpm', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//view addbpm
 	public function viewaddbpm()
 	{
+		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
-		$this->load->view('admin/tambah_calonbpm', $data);
+		$this->load->view('admin/tambah_calonbpm', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//view updatebpm
 	public function viewupdatebpm($id)
 	{
+		if ($this->session->userdata('login')) {
 		$where = array(
 			'no_urut' =>$id
 		);
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['calon'] = $this->m_pemilwa->detail_tabel($where, 'calon_bpm');
-		$this->load->view('admin/ubah_calonbpm', $data);
+		$this->load->view('admin/ubah_calonbpm', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//add calon bpm
 	public function addbpm()
@@ -380,25 +420,37 @@ class Pemilwa extends CI_Controller {
 	//pemilih
 	public function pemilih()
 	{
+		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['pemilih'] = $this->m_pemilwa->get_tabel('pemilih');
 		$this->load->view('admin/pemilih', $data);
+		}else{
+			redirect('login');
+		}
 	}
 	//view addpemilih
 	public function viewaddpemilih()
 	{
+		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
-		$this->load->view('admin/tambah_pemilih', $data);
+		$this->load->view('admin/tambah_pemilih', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	//view updatepemilih
 	public function viewupdatepemilih($id)
 	{
+		if ($this->session->userdata('login')) {
 		$where = array(
 			'nim' =>$id
 		);
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['pemilih'] = $this->m_pemilwa->detail_tabel($where, 'pemilih');
 		$this->load->view('admin/ubah_pemilih', $data);
+	}else{
+		redirect('login');
+	}
 	}
 	//add pemilih
 	public function addpemilih()
@@ -408,7 +460,7 @@ class Pemilwa extends CI_Controller {
 				'nim' => $this->input->post('nim'),
 				'id_prodi' => $this->input->post('id_prodi'),
 				'angkatan' => $this->input->post('angkatan'),
-				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT)
 				);
 			$add = $this->m_pemilwa->insert_tabel($data, 'pemilih');
 			if ($add) {
@@ -423,19 +475,17 @@ class Pemilwa extends CI_Controller {
 	public function updatepemilih()
 	{
 		if($this->input->post('password') == ""){
-			echo "aku";
 			$data = array(
 				'nama_lengkap' => $this->input->post('nama_lengkap'),
 				'id_prodi' => $this->input->post('id_prodi'),
 				'angkatan' => $this->input->post('angkatan'),
 			);
 		}else{
-			echo "kamu";
 			$data = array(
 				'nama_lengkap' => $this->input->post('nama_lengkap'),
 				'id_prodi' => $this->input->post('id_prodi'),
 				'angkatan' => $this->input->post('angkatan'),
-				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+				'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT)
 				);
 		}
 		$where = array(
@@ -463,57 +513,6 @@ class Pemilwa extends CI_Controller {
 		}
 		redirect('Pemilwa/pemilih', 'refresh');
 	}
-	//login
-	public function login() {
-		$this->load->view('user/login');
-	}
-
-	public function login_validation() {
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('nim', 'NIM', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		if ($this->form_validation->run()) {
-			$nim = $this->input->post('nim');
-			$admin_username = $this->input->post('nim');
-			$password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
-			//model function
-			$this->load->model('m_pemilwa');
-			if ($this->m_pemilwa->can_login_user($nim, $password)) {
-				$session_data = array(
-					'nim' => $nim
-				);
-				$this->session->set_userdata($session_data);
-				redirect('enter_user');
-				
-			} else if ($this->m_pemilwa->can_login_admin($admin_username, $password)) {
-				$session_data = array(
-					'nim' => $admin_username
-				);
-				$this->session->set_userdata($session_data);
-				redirect('enter_admin');
-			} else {
-				$this->session->set_flashdata('error','NIM atau Password salah');
-				redirect('login');
-			}
-		} else {
-			$this->login();
-		}
-		
-	}
-	public function enter_user() {
-		if ($this->session->set_userdata('nim') != '') {
-			redirect('vote');
-		} else {
-			redirect('login');
-		}
-	}
-	public function enter_admin() {
-		if ($this->session->set_userdata('nim') != '') {
-			redirect('admin');
-		} else {
-			redirect('login');
-		}
-	}
 	
 	//logout
 	function terimakasih() {
@@ -521,36 +520,55 @@ class Pemilwa extends CI_Controller {
 	}
 	
 	public function logout() {
-		$this->session->unset_userdata('nim');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('login');
 		redirect('login');
 	}
 
 	//add voting paslon
 	public function vote_paslon() {
-		$this->load->view('user/vote_paslon');
+		if ($this->session->userdata('login')) {
+		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('user/vote_paslon', $data);}
+		else{
+			redirect('login');
+		}
 	}
 	
 	public function add_vote_paslon() {
-		$nim_pemilih = $this->session->userdata("nim"); 
-		$pilihan = array(
+		$nim_pemilih = $this->session->userdata("username"); 
+		$where = array(
+			'nim' => $nim_pemilih
+		);
+		$data = array(
 			'no_pilihan_pasangan' => $this->input->post('dipilih')
 			);
-		$this->m_pemilwa->update_tabel($pilihan, $nim_pemilih, 'pemilih');
-		redirect('user/vote_bpm');
+		$this->m_pemilwa->update_tabel($data, $where, 'pemilih');
+		redirect('pemilwa/vote_bpm');
 	}
 	
 	//add voting bpm
 	public function vote_bpm() {
-		$this->load->view('user/vote_bpm');
+		if ($this->session->userdata('login')) {
+		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
+		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
+		$this->load->view('user/vote_bpm', $data);
+		}else{
+			redirect('login');
+		}
 	}
 
 	public function add_vote_bpm() {
-		$nim_pemilih = $this->session->userdata("nim"); 
-		$pilihan = array(
+		$nim_pemilih = $this->session->userdata("username"); 
+		$where = array(
+			'nim' => $nim_pemilih
+		);
+		$data = array(
 			'no_pilihan_bpm' => $this->input->post('dipilih')
 			);
-		$this->m_pemilwa->update_tabel($pilihan, $nim_pemilih, 'pemilih');
-		$this->logout();
+		$this->m_pemilwa->update_tabel($data, $where, 'pemilih');
+		redirect('pemilwa/terimakasih');
 	}
 
 
