@@ -516,6 +516,10 @@ class Pemilwa extends CI_Controller {
 	}
 	
 	//logout
+	function terimakasih() {
+		$this->load->view('user/terimakasih');
+	}
+	
 	public function logout() {
 		$this->session->unset_userdata('nim');
 		redirect('login');
