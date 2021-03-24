@@ -19,7 +19,7 @@
     <div class="form-group row">
       <label for="nama_pasangan" class="col-sm-2 col-form-label">Nama Pasangan</label>
       <div class="col-sm-10">
-        <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" placeholder="Nama" required>
+        <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" placeholder="Masukkan Nama" required>
       </div>
     </div>
     <div class="form-group row">
@@ -32,7 +32,7 @@
     <div class="form-group row">
       <label for="nim_ketua" class="col-sm-2 col-form-label">NIM Ketua</label>
       <div class="col-sm-10">
-        <input type="text" name="nim_ketua" id="nim_ketua" class="form-control" placeholder="NIM Ketua" required> 
+        <input type="text" name="nim_ketua" id="nim_ketua" class="form-control" placeholder="Masukkan NIM Ketua" required> 
       </div>
     </div>
     <div class="form-group row">
@@ -49,7 +49,7 @@
     <div class="form-group row">
       <label for="nim_wakil" class="col-sm-2 col-form-label">NIM Wakil</label>
       <div class="col-sm-10">
-        <input type="text" name="nim_wakil" id="nim_wakil" class="form-control" placeholder="NIM Wakil Ketua" required> 
+        <input type="text" name="nim_wakil" id="nim_wakil" class="form-control" placeholder="Masukkan NIM Wakil Ketua" required> 
       </div>
     </div>
     <div class="form-group row">
