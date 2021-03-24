@@ -2,9 +2,22 @@
 
 <head>
     <title></title>
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pemilwa 2021</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="<?=base_url();?>pemilwa">Home</a></li>
+        <li class="active"><a href="<?=base_url();?>pemilwa/vote_paslon">Voting</a></li>
+      <li><a href="<?=base_url();?>pemilwa/logout">logout</a></li>
+    </ul>
+  </div>
+</nav>
     <h2>Paslon BEM</h2>
 	<form method="post" action="<?=base_url()?>pemilwa/add_vote_paslon">
     <ul>

@@ -24,6 +24,7 @@ class Pemilwa extends CI_Controller {
 
 	//dashboard admin
 	public function dashboard(){
+		if ($this->session->userdata('login')) {
 		$data['pemilih_all'] = $this->m_pemilwa->get_count_pemilih();
 		$data['pemilih_done'] = $this->m_pemilwa->get_count_pemilih_done();
 		$prodi = $this->m_pemilwa->get_tabel('prodi');
@@ -37,11 +38,14 @@ class Pemilwa extends CI_Controller {
 			$data['nama_paslon'][$i] = $paslon[$i]->nama_pasangan;
 		}
 		$bpm = $this->m_pemilwa->get_tabel('calon_bpm');
-		for($i=0;$i<count($paslon);$i++){
+		for($i=0;$i<count($bpm);$i++){
 			$data['bpm'][$i] = $this->m_pemilwa->get_count_bpm($bpm[$i]->no_urut);
 			$data['nama_bpm'][$i] = $bpm[$i]->nama_lengkap;
 		}
 		$this->load->view('admin/dashboard', $data);
+	}else{
+		redirect('login');
+	}
 	}
 	//admin
 	public function admin()
