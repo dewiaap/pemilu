@@ -1,27 +1,72 @@
-<html>
+html>
 <head>
+<style>
+
+</style>
+
 <title></title>
+<link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
+
 </head>
-<body>
-    <h1>Tambah Calon BPM</h1>
+    <body class="d-flex flex-column h-100">
+    <!-- Page Content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">Tambah Calon BPM</h1>
+    <p class="lead">Silahkan Daftarkan Identitas Anda</p>
+    <hr/>
     <form action="<?=base_url()?>pemilwa/addbpm" method="post" enctype="multipart/form-data">
-    <label for="nama_lengkap">Nama Lengkap</label>
-    <input type="text" name="nama_lengkap" id="nama_lengkap" required>
-    <br><label for="gambar">Gambar</label>
-    <input type="file" name="gambar" id="gambar" required>
-    <br><label for="nim">Nim</label>
-    <input type="text" name="nim" id="nim" required>
-    <br><label for="id_prodi">Prodi</label>
-    <select name="id_prodi" id="id_prodi" required>
-    <?php foreach($prodi as $p){?>
-    <option value="<?=$p->id_prodi?>"><?=$p->prodi?></option>
-    <?php } ?>
-    </select>
-    <br><label for="visi">Visi</label>
-    <textarea name="visi" id="visi" cols="30" rows="10" required></textarea>
-    <br><label for="misi">Misi</label>
-    <textarea name="misi" id="misi" cols="30" rows="10" required></textarea>
-    <br><input type="submit" value="Simpan">
-    </form>
+    <div class="form-group row">
+      <label for="nama_lengkap" class="col-sm-2 col-form-label">Nama Lengkap</label>
+      <div class="col-sm-10">
+        <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Nama Lengkap" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
+      <div class="col-sm-10">
+        <input type="file" name="gambar" id="gambar">
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group row">
+      <label for="nim" class="col-sm-2 col-form-label">NIM</label>
+      <div class="col-sm-10">
+        <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" required> 
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="id_prodi" class="col-sm-2 col-form-label">Prodi</label>
+      <div class="col-sm-10">
+        <select name="id_prodi" id="id_prodi" required>
+        <?php foreach($prodi as $p){?>
+        <option value="<?=$p->id_prodi?>"><?=$p->prodi?></option>
+        <?php } ?>
+        </select>
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group row">
+    <label for="visi" class="col-sm-2 col-form-label">Visi</label>
+    <div class="col-sm-10">
+    <textarea name="visi" id="visi" cols="130" rows="10" required></textarea>
+    </div>
+  </div>
+  <hr/>
+  <div class="form-group row">
+    <label for="misi" class="col-sm-2 col-form-label">Misi</label>
+    <div class="col-sm-10">
+    <textarea name="misi" id="misi" cols="130" rows="10" required></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary" name="register">Simpan</button>
+    </div>
+  </div>
+</form>
+  </div>
+</main>
 </body>
+
 </html>
