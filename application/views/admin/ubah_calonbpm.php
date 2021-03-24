@@ -8,7 +8,7 @@
     <!-- Page Content -->
 <main role="main" class="flex-shrink-0">
   <div class="container">
-    <h1 class="mt-5">Update Calon BPM</h1>
+    <h1 class="mt-5">Update Data Calon BPM</h1>
     <p class="lead">Silahkan Daftarkan Identitas Anda</p>
     <hr/>
     <form action="<?=base_url()?>pemilwa/updatebpm" method="post" enctype="multipart/form-data">
