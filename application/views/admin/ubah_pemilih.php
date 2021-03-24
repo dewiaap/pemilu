@@ -8,7 +8,7 @@
     <!-- Page Content -->
 <main role="main" class="flex-shrink-0">
   <div class="container">
-    <h1 class="mt-5">Update Pemilih</h1>
+    <h1 class="mt-5">Update Data Pemilih</h1>
     <p class="lead">Silahkan Daftarkan Identitas Anda</p>
     <hr size="10px">
     <form action="<?=base_url()?>pemilwa/updatepemilih" method="post" enctype="multipart/form-data">
