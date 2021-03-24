@@ -1,36 +1,87 @@
 <html>
 <head>
 <title></title>
+<link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
+
 </head>
-<body>
-    <h1>Update Paslon</h1>
+    <body class="d-flex flex-column h-100">
+    <!-- Page Content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">Update Data Paslon</h1>
+    <p class="lead">Silahkan Daftarkan Identitas Anda</p>
+    <hr size="10px">
     <form action="<?=base_url()?>pemilwa/updatepaslon" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="no_urut" value="<?=$paslon->no_urut?>">
-    <label for="nama_pasangan">Nama Pasangan</label>
-    <input type="text" name="nama_pasangan" id="nama_pasangan" value="<?=$paslon->nama_pasangan?>">
-    <br><label for="gambar">Gambar</label>
-    <input type="file" name="gambar" id="gambar">
-    <br><label for="nim_ketua">Nim Ketua</label>
-    <input type="text" name="nim_ketua" id="nim_ketua" value="<?=$paslon->nim_ketua?>">
-    <br><label for="id_prodi_ketua">Prodi Ketua</label>
-    <select name="id_prodi_ketua" id="id_prodi_ketua">
-    <?php foreach($prodi as $p){?>
-    <option value="<?=$p->id_prodi?>"<?php if($p->id_prodi == $paslon->id_prodi_ketua){echo "selected";}?>><?=$p->prodi?></option>
-    <?php } ?>
-    </select>
-    <br><label for="nim_wakil">Nim Wakil</label>
-    <input type="text" name="nim_wakil" id="nim_wakil" value="<?=$paslon->nim_wakil?>">
-    <br><label for="id_prodi_wakil">Prodi Wakil</label>
-    <select name="id_prodi_wakil" id="id_prodi_wakil" value="<?=$paslon->id_prodi_wakil?>">
-    <?php foreach($prodi as $p){?>
-    <option value="<?=$p->id_prodi?>"<?php if($p->id_prodi == $paslon->id_prodi_ketua){echo "selected";}?>><?=$p->prodi?></option>
-    <?php } ?>
-    </select>
-    <br><label for="visi">Visi</label>
-    <textarea name="visi" id="visi" cols="30" rows="10"><?=$paslon->visi?></textarea>
-    <br><label for="misi">Misi</label>
-    <textarea name="misi" id="misi" cols="30" rows="10"><?=$paslon->misi?></textarea>
-    <br><input type="submit" value="Simpan">
-    </form>
+    <div class="form-group row">
+        <input type="hidden" name="no_urut" value="<?=$paslon->no_urut?>">
+    </div>
+    <div class="form-group row">
+      <label for="nama_pasangan" class="col-sm-2 col-form-label">Nama Pasangan</label>
+      <div class="col-sm-10">
+        <input type="text" name="nama_pasangan" id="nama_pasangan" class="form-control" placeholder="Masukkan Nama Pasangan" value="<?=$paslon->nama_pasangan?>" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
+      <div class="col-sm-10">
+        <input type="file" name="gambar" id="gambar">
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group row">
+      <label for="nim_ketua" class="col-sm-2 col-form-label">NIM Ketua</label>
+      <div class="col-sm-10">
+        <input type="text" name="nim_ketua" id="nim_ketua" class="form-control" placeholder="Masukkan NIM Ketua" value="<?=$paslon->nim_ketua?>" required> 
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="id_prodi_ketua" class="col-sm-2 col-form-label">Prodi Ketua</label>
+      <div class="col-sm-10">
+      <select name="id_prodi_ketua" id="id_prodi_ketua">
+        <?php foreach($prodi as $p){?>
+        <option value="<?=$p->id_prodi?>"<?php if($p->id_prodi == $paslon->id_prodi_ketua){echo "selected";}?>><?=$p->prodi?></option>
+        <?php } ?>
+      </select>
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group row">
+      <label for="nim_wakil" class="col-sm-2 col-form-label">NIM Wakil</label>
+      <div class="col-sm-10">
+        <input type="text" name="nim_wakil" id="nim_wakil" class="form-control" placeholder="NIM Wakil Ketua" value="<?=$paslon->nim_wakil?>" required> 
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="id_prodi_wakil" class="col-sm-2 col-form-label">Prodi Wakil</label>
+      <div class="col-sm-10">
+      <select name="id_prodi_wakil" id="id_prodi_wakil" value="<?=$paslon->id_prodi_wakil?>">
+        <?php foreach($prodi as $p){?>
+        <option value="<?=$p->id_prodi?>"<?php if($p->id_prodi == $paslon->id_prodi_ketua){echo "selected";}?>><?=$p->prodi?></option>
+        <?php } ?>
+      </select>
+      </div>
+    </div>
+    <hr/>
+    <div class="form-group row">
+    <label for="visi" class="col-sm-2 col-form-label">Visi</label>
+    <div class="col-sm-10">
+    <textarea name="visi" id="visi" cols="130" rows="10" required><?=$paslon->visi?></textarea>
+    </div>
+  </div>
+  <hr/>
+  <div class="form-group row">
+    <label for="misi" class="col-sm-2 col-form-label">Misi</label>
+    <div class="col-sm-10">
+    <textarea name="misi" id="misi" cols="130" rows="10" required><?=$paslon->misi?></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary" name="register">Simpan</button>
+    </div>
+  </div>
+</form>
+  </div>
+</main>
 </body>
 </html>
