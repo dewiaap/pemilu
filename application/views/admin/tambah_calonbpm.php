@@ -19,7 +19,7 @@ html>
     <div class="form-group row">
       <label for="nama_lengkap" class="col-sm-2 col-form-label">Nama Lengkap</label>
       <div class="col-sm-10">
-        <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Nama Lengkap" required>
+        <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Masukkan Nama Lengkap" required>
       </div>
     </div>
     <div class="form-group row">
@@ -32,7 +32,7 @@ html>
     <div class="form-group row">
       <label for="nim" class="col-sm-2 col-form-label">NIM</label>
       <div class="col-sm-10">
-        <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" required> 
+        <input type="text" name="nim" id="nim" class="form-control" placeholder="Masukkan NIM" required> 
       </div>
     </div>
     <div class="form-group row">
