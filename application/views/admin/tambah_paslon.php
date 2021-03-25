@@ -38,7 +38,7 @@
     <div class="form-group row">
       <label for="id_prodi_ketua" class="col-sm-2 col-form-label">Prodi Ketua</label>
       <div class="col-sm-10">
-        <select name="id_prodi_ketua" id="id_prodi_ketua" required>
+        <select name="id_prodi_ketua" id="id_prodi_ketua" required class="form-control">
         <?php foreach($prodi as $p){?>
         <option value="<?=$p->id_prodi?>"><?=$p->prodi?></option>
         <?php } ?>
@@ -55,7 +55,7 @@
     <div class="form-group row">
       <label for="id_prodi_wakil" class="col-sm-2 col-form-label">Prodi Wakil</label>
       <div class="col-sm-10">
-        <select name="id_prodi_wakil" id="id_prodi_wakil" required>
+        <select name="id_prodi_wakil" id="id_prodi_wakil" required class="form-control">
         <?php foreach($prodi as $p){?>
         <option value="<?=$p->id_prodi?>"><?=$p->prodi?></option>
         <?php } ?>

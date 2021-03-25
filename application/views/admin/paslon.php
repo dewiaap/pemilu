@@ -1,42 +1,36 @@
-<html>
-<head>
-<title></title>
-</head><link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
-<body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Admin Pemilwa 2021</a>
-    </div>
-    <ul class="nav navbar-nav">
-    <li><a href="<?=base_url();?>pemilwa/dashboard">Dashboard</a></li>
-      <li><a href="<?=base_url();?>pemilwa/pemilih">Pemilih</a></li>
-      <li class="active"><a href="<?=base_url();?>pemilwa/paslon">Paslon BEM</a></li>
-      <li><a href="<?=base_url();?>pemilwa/bpm">Calon BPM</a></li>
-      <li><a href="<?=base_url();?>pemilwa/admin">Admin</a></li>
-      <li><a href="<?=base_url();?>pemilwa/logout">logout</a></li>
-    </ul>
-  </div>
-</nav>
-    <h3>Data Paslon BEM</h3>
-    <a href="<?=base_url()?>pemilwa/viewaddpaslon"><button>tambah</button></a>
-    <br>
-    <?php if ($this->session->flashdata('paslon')!=null): ?>
-	<div class="alert"><?= $this->session->flashdata('paslon');?></div>
-	<?php endif?>
-    <table border="1">
-    <tr>
-    <th>Nama Pasangan</th>
-    <th>Gambar</td>
-    <th>Nim Ketua</th>
-    <th>Prodi Ketua</th>
-    <th>Nim Wakil</th>
-    <th>Prodi Wakil</th>
-    <th>Visi</th>
-    <th>Misi</th>
-    <th>Aksi</th>
-    </tr>
-    <?php foreach($bem as $b){?>
+<div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                        Data Paslon BEM
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="btn btn-success float-right" href="<?=base_url()?>pemilwa/viewaddpaslon">Tambah Paslon BEM</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                        <th>Nama Pasang</th>
+                                        <th>Gambar</td>
+                                        <th>Nim Ketua</th>
+                                        <th>Prodi Ketua</th>
+                                        <th>Nim Wakil</th>
+                                        <th>Prodi Wakil</th>
+                                        <th>Visi</th>
+                                        <th>Misi</th>
+                                        <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($bem as $b){?>
     <tr>
     <td><?= $b->nama_pasangan?></td>
     <td><img src="<?=base_url()?>/assets/image/paslon/<?=strtolower($b->gambar)?>"></td>
@@ -46,9 +40,25 @@
 	<td><?= $prodi[$b->id_prodi_wakil-1]->prodi?></td>
     <td><?= $b->visi?></td>
     <td><?= $b->misi?></td>
-    <td><a href="<?=base_url()?>pemilwa/deletepaslon/<?= $b->no_urut?>"><button>hapus</button></a> | <a href="<?=base_url()?>/pemilwa/viewupdatepaslon/<?= $b->no_urut?>"><button>update</button></a></td>
+    <td>
+    <a data-placement="bottom" class="btn btn-warning" rel="tooltip" title="Edit" href="<?= base_url();?>pemilwa/viewupdatepaslon/<?= $b->no_urut?>"><i class="fa fa-pencil"></i></a>
+		<a data-placement="bottom" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus?')" href="<?= base_url();?>pemilwa/deletepaslon/<?= $b->no_urut?>" rel="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+    </td>
     </tr>
     <?php }?>
-    </table>
-</body>
-</html>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+				<footer><p>All right reserved. Template by: <a href="<?=base_url();?>http://webthemez.com">WebThemez</a></p></footer>
+</div>
+<script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>

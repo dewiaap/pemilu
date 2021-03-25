@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
 <title></title>
 <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
@@ -39,4 +39,56 @@
     <?php }?>
     </table>
 </body>
-</html>
+</html> -->
+<div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                        Data Admin
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <a class="btn btn-success float-right" href="<?=base_url()?>pemilwa/viewaddadmin">Tambah Admin</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                        <th>Nama Admin</th>
+    <th>Username</th>
+    <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($admin as $a){?>
+    <tr>
+    <td><?= $a->nama_admin?></td>
+    <td><?= $a->username?></td>
+    <td>
+    <a data-placement="bottom" class="btn btn-warning" rel="tooltip" title="Edit" href="<?= base_url();?>pemilwa/viewupdateadmin/<?= $a->id_admin?>"><i class="fa fa-pencil"></i></a>
+		<a data-placement="bottom" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus?')" href="<?= base_url();?>pemilwa/deleteadmin/<?= $a->id_admin?>" rel="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+    </td>
+    </tr>
+    <?php }?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+				<footer><p>All right reserved. Template by: <a href="<?=base_url();?>http://webthemez.com">WebThemez</a></p></footer>
+</div>
+<script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>

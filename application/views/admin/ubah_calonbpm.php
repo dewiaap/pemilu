@@ -37,7 +37,7 @@
     <div class="form-group row">
       <label for="id_prodi" class="col-sm-2 col-form-label">Prodi</label>
       <div class="col-sm-10">
-      <select name="id_prodi" id="id_prodi">
+      <select name="id_prodi" id="id_prodi" class="form-control">
         <?php foreach($prodi as $p){?>
         <option value="<?=$p->id_prodi?>"<?php if($p->id_prodi == $calon->id_prodi){echo "selected";}?>><?=$p->prodi?></option>
         <?php } ?>

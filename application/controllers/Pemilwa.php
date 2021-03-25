@@ -21,7 +21,6 @@ class Pemilwa extends CI_Controller {
 			redirect('login');
 		}
 	}
-
 	//dashboard admin
 	public function dashboard(){
 		if ($this->session->userdata('login')) {
@@ -30,19 +29,10 @@ class Pemilwa extends CI_Controller {
 		$prodi = $this->m_pemilwa->get_tabel('prodi');
 		for($i=0;$i<count($prodi);$i++){
 			$data['prodi'][$i] = $this->m_pemilwa->get_count_prodi($prodi[$i]->id_prodi);
-			$data['nama_prodi'][$i] = $prodi[$i]->prodi;
+			$data['nama_prodi'][$i] = $prodi[$i]->singkatan;
 		}
-		$paslon = $this->m_pemilwa->get_tabel('pasang_calon');
-		for($i=0;$i<count($paslon);$i++){
-			$data['paslon'][$i] = $this->m_pemilwa->get_count_paslon($paslon[$i]->no_urut);
-			$data['nama_paslon'][$i] = $paslon[$i]->nama_pasangan;
-		}
-		$bpm = $this->m_pemilwa->get_tabel('calon_bpm');
-		for($i=0;$i<count($bpm);$i++){
-			$data['bpm'][$i] = $this->m_pemilwa->get_count_bpm($bpm[$i]->no_urut);
-			$data['nama_bpm'][$i] = $bpm[$i]->nama_lengkap;
-		}
-		$this->load->view('admin/dashboard', $data);
+		$data['content_view'] = "admin/dashboard";
+		$this->load->view('admin/template', $data);
 	}else{
 		redirect('login');
 	}
@@ -52,7 +42,8 @@ class Pemilwa extends CI_Controller {
 	{
 		if ($this->session->userdata('login')) {
 		$data['admin'] = $this->m_pemilwa->get_tabel('admin');
-		$this->load->view('admin/admin', $data);}
+		$data['content_view'] = "admin/admin";
+		$this->load->view('admin/template', $data);}
 		else{
 			redirect('login');
 		}
@@ -142,7 +133,8 @@ class Pemilwa extends CI_Controller {
 		if ($this->session->userdata('login')) {
 		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
-		$this->load->view('admin/paslon', $data);
+		$data['content_view'] = "admin/paslon";
+		$this->load->view('admin/template', $data);
 		}else{
 			redirect('login');
 		}
@@ -289,7 +281,8 @@ class Pemilwa extends CI_Controller {
 		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
-		$this->load->view('admin/calonbpm', $data);}
+		$data['content_view'] = "admin/calonbpm";
+		$this->load->view('admin/template', $data);}
 		else{
 			redirect('login');
 		}
@@ -427,7 +420,8 @@ class Pemilwa extends CI_Controller {
 		if ($this->session->userdata('login')) {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['pemilih'] = $this->m_pemilwa->get_tabel('pemilih');
-		$this->load->view('admin/pemilih', $data);
+		$data['content_view'] = "admin/pemilih";
+		$this->load->view('admin/template', $data);
 		}else{
 			redirect('login');
 		}
@@ -575,5 +569,18 @@ class Pemilwa extends CI_Controller {
 		redirect('pemilwa/terimakasih');
 	}
 
+	public function detildashboard(){
+		$paslon = $this->m_pemilwa->get_tabel('pasang_calon');
+		for($i=0;$i<count($paslon);$i++){
+			$data['paslon'][$i] = $this->m_pemilwa->get_count_paslon($paslon[$i]->no_urut);
+			$data['nama_paslon'][$i] = $paslon[$i]->nama_pasangan;
+		}
+		$bpm = $this->m_pemilwa->get_tabel('calon_bpm');
+		for($i=0;$i<count($bpm);$i++){
+			$data['bpm'][$i] = $this->m_pemilwa->get_count_bpm($bpm[$i]->no_urut);
+			$data['nama_bpm'][$i] = $bpm[$i]->nama_lengkap;
+		}
+		echo json_encode($data);
+	}
 
 }
