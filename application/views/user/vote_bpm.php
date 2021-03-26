@@ -33,8 +33,6 @@
               <div class="col-lg-10 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-3 column">
                   <p id="prodi"><?= $prodi[$b->id_prodi - 1]->prodi ?></p>
               </div>
-              <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-3 column">
-              </div>
           </div>		
         <h5 id="pasangan">Visi</h5>
         <p><?= $b->visi ?></p>
