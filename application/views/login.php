@@ -16,12 +16,6 @@
 </head>
 
 <body>
-
-    <?php
-    if($this->session->flashdata('error')) {
-        echo $this->session->flashdata('error');
-    }
-    ?>
    <form method="post" action="<?= base_url('login/signin'); ?>">
    <div class="container">
    <h2 class="text-center">Log In</h2>
