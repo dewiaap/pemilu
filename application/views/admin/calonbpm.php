@@ -31,9 +31,9 @@
                                     <?php foreach($bpm as $b){?>
     <tr>
     <td><?= $b->nama_lengkap?></td>
-    <td><img src="<?=base_url()?>/assets/image/bpm/<?=$b->gambar?>"></td>
+    <td><img src="<?=base_url()?>/assets/image/bpm/<?=$b->gambar?>" width="100" heigth="100"></td>
 	<td><?= $b->nim?></td>
-    <td><?= $prodi[$b->id_prodi-1]->prodi?></td>
+    <td><?= $prodi[$b->id_prodi-1]->singkatan?></td>
     <td><?= $b->visi?></td>
     <td><?= $b->misi?></td>
     <td>

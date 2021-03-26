@@ -45,7 +45,7 @@
                                 Perolehan Suara Berdasarkan Prodi
                             </div>
                             <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
+                                <div id="morris-bar-chart1"></div>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 Perolehan Suara Paslon BEM
                             </div>
                             <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
+                                <div id="morris-donut-chart2"></div>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
             }
             console.log(bpm);
 			Morris.Donut({
-                element: 'morris-donut-chart',
+                element: 'morris-donut-chart2',
                 data: paslon,
                 resize: true
             });   
@@ -100,7 +100,7 @@
             });
         });
          Morris.Bar({
-                element: 'morris-bar-chart',
+                element: 'morris-bar-chart1',
                 data: [{
                     y: '<?= $nama_prodi[0]?>',
                     a: <?= $prodi[0]?>

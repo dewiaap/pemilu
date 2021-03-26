@@ -52,16 +52,16 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="<?=base_url();?>pemilwa/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a href="<?=base_url();?>pemilwa/dashboard"><i class="fa fa-home"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="<?=base_url();?>pemilwa/paslon"><i class="fa fa-desktop"></i>Paslon BEM</a>
                     </li>
 					<li>
-                        <a href="<?=base_url();?>pemilwa/bpm"><i class="fa fa-bar-chart-o"></i>Calon BPM</a>
+                        <a href="<?=base_url();?>pemilwa/bpm"><i class="fa fa-bookmark"></i>Calon BPM</a>
                     </li>
                     <li>
-                        <a href="<?=base_url();?>pemilwa/pemilih"><i class="fa fa-qrcode"></i>Pemilih</a>
+                        <a href="<?=base_url();?>pemilwa/pemilih"><i class="fa fa-users"></i>Pemilih</a>
                     </li>
                 </ul>
 

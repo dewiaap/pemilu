@@ -1,47 +1,251 @@
-body{
-  /* background-image:url('../../../public/img/source/3.jpg'); */
-  background-size:cover;
-  background-color: #abe0ee;
+body {
+    background: url('../img/landing\ page.png');
+    color: white;
+    background-size: cover;
 }
 
-h1{
-  text-align:center;
-  margin-top:200px;
+#kontainer {
+    margin: 20px;
+    margin-top: 60px;
 }
-  
-div.container{
-  margin-top:200px;
-  background-color:rgb(17, 20, 20);
-  width:50%;
+
+#garis {
+    height: 2px;
+    background-color: black;
+    margin-top: 0px;
+}
+
+#LogoKemenag {
+    margin-left: 900px;
+}
+
+#TulisanKpom {
+    margin-top: 0px;
+    margin-bottom: 2px;
+    font-family: brush script MT;
+}
+
+#konten {
+    height: 100%;
+    text-align: center;
+}
+
+@media (min-width:1200px) {
+    #LogoIcj {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width:1000px) {
+    #LogoBn {
+        max-height: 70px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width:767px) {
+    #TempatTulisan {
+        width: 100%;
+    }
+}
+
+#Tulisan {
+    font-family: times new roman;
+}
+
+a.navbar-brand.bg-info.navbar-link {
+    margin-left: 10px;
+}
+
+#LogoIcj {
+    max-height: 70px;
+}
+
+#LogoBn {
+    max-height: 70px;
+    transform: scale(1.5);
+}
+
+#LogoKemenag {
+    max-height: 70px;
+}
+
+@media (max-width:1199px) {
+    #LogoKemenag {
+        margin-left: 200px;
+    }
+}
+
+#TempatFoto {
+    text-align: center;
+    margin-top: 30px;
+    height: 200px
+}
+
+@media (min-width:1000px) {
+    .FotoCalon {
+        max-height: 300px;
+        max-width: 300px;
+    }
+}
+
+#HVisi {
+    margin-top: 15px;
+    font-family: rockwell;
+}
+
+#VisiMisi {
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #676767;
+    opacity: 0.95;
+    height: 300px;
+}
+
+#LogoIcj {
+    margin-left: 30px;
+}
+
+#Konfirmasi {
+    width: 200px;
+    margin-left: 42.5%;
+    background-color: rgb(84, 162, 84);
+    margin-top: 5px;
+    text-align: center;
+}
+
+@media (min-width:1200px) {
+    #LogoKemenag {
+        margin-left: 50%;
+    }
+}
+
+@media (min-width:400px) {
+    .FotoCalon {
+        margin: 0 30px;
+    }
+}
+
+@media (max-width:1199px) {
+    .FotoCalon {
+        max-height: 250px;
+        max-width: 250px;
+    }
+}
+
+@media (max-width:991px) {
+    .FotoCalon {
+        max-height: 100px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width:767px) {
+    .FotoCalon {
+        margin: 20px 0;
+    }
+}
+
+li {
+    text-decoration-style: none;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.FotoCalon {
+    border: 5px #234f33 solid;
+}
+
+#TulisanKandidat {
+    font-family: rockwell;
+}
+
+#Konfirmasi {
+    font-family: Brush Script MT;
+}
+
+#TulisanKonfirmasi {
+    font-size: 50px;
+    height: 60px;
+}
+
+#penutup {
+    background-color: rgb(67, 52, 52);
+}
+
+#NamaNama {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+.FotoTulisan {
+    margin: 0 30px;
+    padding: 0;
+}
+
+.TulisanCalon {
+    color: white;
+}
+
+@media (max-width:991px) {
+    .FotoTulisan {
+        width: 95%;
+    }
+}
+
+@media (max-width:991px) {
+    .FotoTulisan {
+        margin: 20px 0;
+    }
+}
+
+@media (max-width:991px) {
+    #Konfirmasi {
+        margin-left: 39.5%;
+    }
+}
+
+.fotoTulisan {
+    width: 300px;
+}
+
+@media (min-width:1200px) {
+    #Konfirmasi {
+        margin-left: 42.5%;
+    }
+}
+
+@media (max-width:1199px) {
+    #Konfirmasi {
+        margin-left: 40%;
+    }
+}
+
+
+/* #submit{
   padding:5px;
-  border-radius:20px;
-  opacity: 0.8;
-  transition-duration: 500ms;
-  transition-property: opacity;
+  width:200px;
+} */
+
+@media (max-width:991px) {
+    #Konfirmasi {
+        margin-left: 37, 5%;
+    }
 }
 
-div.container:hover{
-  opacity: 0.9;
-}
 
-div.container:active{
-  opacity:1;
-}
+/* #submit{
+  font-size: 2em;
+} */
 
-form{
-  margin-top:20px;
-
-}
-
-h2{
-  text-align:center;
-}
-
-.column{
-  margin-top:10px;
-  margin-bottom:10px;
-}
-
-#submit{
-  cursor:default;
+@media (min-width:1000px) {
+    #FotoPertama {
+        margin-left: 80px;
+    }
 }

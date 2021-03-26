@@ -1,42 +1,174 @@
-body{
-
-    background-size:cover;
-    background-color: #f0f0f0;
-  }
-div.container{
-    margin-top:200px;
-    background-color:rgb(28, 146, 243);
-    width:50%;
-    padding:5px;
-    border-radius:20px;
-    opacity: 0.8;
-    transition-duration: 500ms;
-    transition-property: opacity;
+.TulisanCalon {
+    opacity: 0;
+    font-size: 20px;
 }
 
-div.container:hover{
-    opacity: 0.9;
+.places {
+    /* background-image:url("../../assets for Kposis/img/2.jpg"); */
+    border-radius: 20px;
+    padding: 85px;
 }
-div.container:active{
-    opacity:1;
+
+#t1 {
+    padding-top: 120px;
 }
-form{
-    margin-top:30px;
+
+#t2 {
+    padding-top: 120px;
 }
-  
-h2{
-    text-align:center;
+
+#t3 {
+    padding-top: 120px;
 }
-  
-.column{
-    margin-top:15px;
-    margin-bottom:15px;
+
+#tOne {
+    padding-top: 120px;
 }
-  
-#submit{
-    cursor:default;
+
+#tTwo {
+    padding-top: 120px;
 }
-button{
-    color: white;
-    background-color: darkblue;
+
+#tThree {
+    padding-top: 120px;
+}
+
+
+/* tempat foto */
+
+.places>div {
+    height: 250px;
+    width: 250px;
+    background-size: cover;
+    border-radius: 50%;
+    margin: -62px;
+    background-position-x: -62px;
+}
+
+#one {
+    background-image: url('../img/1O1.jpg');
+}
+
+#two {
+    background-image: url('../img/2O1.jpg');
+}
+
+#three {
+    background-image: url('../img/3O1.jpg');
+}
+
+#first {
+    background-image: url('../img/1M1.jpg');
+}
+
+#between {
+    background-image: url('../img/2M1.jpg');
+}
+
+#second {
+    background-image: url('../img/3M1.jpg');
+}
+
+.places {
+    background: url('../img/bulatan\ paslon.png');
+    width: 300px;
+    background-size: cover;
+    height: 300px;
+    background-repeat: no-repeat;
+    transition-property: all;
+    transition-duration: 750ms;
+    opacity: 0.5;
+}
+
+.places.except {
+    opacity: 1;
+}
+
+.FotoTulisan:hover .places,
+.FotoTulisan:focus .places {
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.places#between {
+    opacity: 1;
+    width: 200px;
+    margin-left: 40px;
+}
+
+.places#between:hover .places#between:focus {
+    transform: scale(1.00);
+    -webkit-transform: scale(1.00);
+}
+
+.misi {
+    transition-duration: 250ms;
+    transition-property: all;
+    padding: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.misi:hover {
+    padding: 5px;
+}
+
+#confirmBox {
+    position: fixed;
+    left: 25%;
+    right: 25%;
+    width: 50%;
+    height: 25%;
+    top: 40%;
+    /* z-index: 0; */
+    background-color: #ccc;
+    border-radius: 20px;
+}
+
+#konfirmasi {
+    z-index: 9999;
+    background-color: rgba(78, 80, 73, 0.75);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    display: none;
+    /* transition-property: all;
+  transition-duration: 500ms;
+  border-radius: 50%; */
+}
+
+#peringatan {
+    text-align: center;
+    font-weight: 700;
+    color: #ef3a3a;
+}
+
+#nama {
+    color: black;
+    font-weight: 500;
+}
+
+.confirm {
+    cursor: default;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
 }

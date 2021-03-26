@@ -33,11 +33,11 @@
                                     <?php foreach($bem as $b){?>
     <tr>
     <td><?= $b->nama_pasangan?></td>
-    <td><img src="<?=base_url()?>/assets/image/paslon/<?=strtolower($b->gambar)?>"></td>
+    <td><img src="<?=base_url()?>/assets/image/paslon/<?=strtolower($b->gambar)?>"  width="100" heigth="100"></td>
 	<td><?= $b->nim_ketua?></td>
-    <td><?= $prodi[$b->id_prodi_ketua-1]->prodi?></td>
+    <td><?= $prodi[$b->id_prodi_ketua-1]->singkatan?></td>
 	<td><?= $b->nim_wakil?></td>
-	<td><?= $prodi[$b->id_prodi_wakil-1]->prodi?></td>
+	<td><?= $prodi[$b->id_prodi_wakil-1]->singkatan?></td>
     <td><?= $b->visi?></td>
     <td><?= $b->misi?></td>
     <td>

@@ -15,7 +15,7 @@
     <div class="form-group row">
       <label for="NIM" class="col-sm-2 col-form-label">NIM</label>
       <div class="col-sm-10">
-        <input type="text" name="NIM" id="NIM" class="form-control" value="<?=$pemilih->nim?>" readonly="readonly">
+        <input type="text" name="nim" id="nim" class="form-control" value="<?=$pemilih->nim?>" readonly="readonly">
       </div>
     </div>
     <div class="form-group row">
