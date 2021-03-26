@@ -14,7 +14,7 @@
 <div id="kontainer">
         <div class="row">
             <div class="col-sm-12 text-center" id="TempatTulisan">
-                <h1 id="Selamat"><img class="hidden-xs hidden-sm" src="assets/image/poros1.png">Selamat Datang di Website Pemilwa 2021<img class="hidden-xs hidden-sm" src="assets/image/ub1.png"></h1>
+                <h1 id="Selamat"><img class="hidden-xs hidden-sm" src="<?= base_url() ?>assets/image/poros1.png">Selamat Datang di Website Pemilwa 2021<img class="hidden-xs hidden-sm" src="<?= base_url() ?>assets/image/ub1.png"></h1>
                 <h4 id="Tulisan">"Silahkan Tentukan Pilihan Anda!"</h4></div>
         </div>
 <div class="container">
@@ -25,7 +25,7 @@
 <div class="row">
 <?php foreach ($bpm as $b) { ?>
               <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-              <img src="<?= base_url() ?>/assets/image/bpm/<?= $b->gambar ?>">
+              <img src="<?= base_url() ?>/assets/image/bpm/<?= $b->gambar ?>" width="150" height="150">
               </div>
               <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 column">
                 <h5 id="pasangan"> <?= $b->nama_lengkap ?></h5>
@@ -38,11 +38,11 @@
         <p><?= $b->visi ?></p>
         <h5 id="pasangan">Misi</h5>
         <p><?= $b->misi ?></p>
-        <?php }?>
-              <div>
+        <div>
                 <input type="radio" name="dipilih" value="<?= $b->no_urut ?>" required>
               
               </div>
+        <?php }?>
 </div>
 <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-3 column">
   <button class="btn btn-primary" type="submit" id="submit" name="Vote">Vote!</button> 

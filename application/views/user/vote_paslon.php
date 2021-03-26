@@ -27,7 +27,7 @@
 <div class="row">
 <?php foreach ($bem as $b) { ?>
               <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-              <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>">
+              <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>" width="150" height="150">
               </div>
               <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 column">
                 <h5 id="pasangan"> <?= $b->nama_pasangan ?></h5>
