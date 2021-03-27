@@ -1,3 +1,7 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
 body{
     text-align: center;
     background-color: #f0f0f0;
@@ -8,30 +12,45 @@ body{
 }
 #kontainer {
     height: 1000px;
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
     margin: 20px;
     margin-top: 60px;
+
 }
 #Selamat{
-    font-family: cursive;
-    color: white;
+    font-family: monospace;
+    background:linear-gradient(45deg, #08AADB, #f07328);
+    background-clip: text;
+    width: 100%;
+    padding: 5px;
+    
 }
 #Tulisan {
-    font-family: times new roman;
+    font-family: monospace;
     color: white;
+    background: -webkit-linear-gradient(45deg, #f8f54f, #61fcda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 #pasangan{
     /* text-transform: uppercase; */
-    color: white;
-    font-family: cursive;
+    color: rgb(0, 0, 0);
+    font-family: monospace;
     font-size: 25px;
+    text-align: center;
+    
 }
 .container  h3{
     padding: 30px;
     color: white;
     font-family: cursive;
     font-size: 30px;
+    background: -webkit-linear-gradient(45deg, #ededee, #f52004);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
 }
 #databem{
     margin-top:0px;
@@ -85,7 +104,7 @@ button{
 }
 #prodi{
     color: white;
-    font-family: cursive;
+    font-family: monospace;
     font-size: 20px;
       
 }
@@ -95,6 +114,19 @@ button{
     text-align: center;
     margin-top: 120px;
     weight: 30px;
-    color: aqua;
-
+    background: -webkit-linear-gradient(45deg, #f8f54f, #61fcda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
