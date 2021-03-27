@@ -22,27 +22,20 @@
 <div class="container">
 <h3>Pasangan Calon BEM</h3>
 <form method="post" action="<?=base_url()?>pemilwa/add_vote_paslon">
+
 <div class="box" id="databem">
-      
-<div class="row">
 <?php foreach ($bem as $b) { ?>
-              <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-              <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>" width="150" height="150">
+<div class="row">
+              <div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0">
+              <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>">
+              <h5 id="pasangan"> <?= $b->nama_pasangan ?></h5>
+              <p id="prodi"> <?= $prodi[$b->id_prodi_ketua - 1]->prodi ?> & <?= $prodi[$b->id_prodi_wakil - 1]->prodi ?></p>
+              <h5 id="pasangan">Visi</h5>
+              <p><?= $b->visi?></p>
+              <h5 id="pasangan">Misi</h5>
+              <p><?= $b->misi?></p>
+              <input type="radio" name="dipilih" value="<?= $b->no_urut ?>" required>
               </div>
-              <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 column">
-                <h5 id="pasangan"> <?= $b->nama_pasangan ?></h5>
-              </div>
-              <div class="col-lg-11 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-3 column">
-                  <p id="prodi"> <?= $prodi[$b->id_prodi_ketua - 1]->prodi ?> & <?= $prodi[$b->id_prodi_wakil - 1]->prodi ?></p>
-              </div>
-          </div>		
-        <h5 id="pasangan">Visi</h5>
-        <p><?= $b->visi?></p>
-        <h5 id="pasangan">Misi</h5>
-        <p><?= $b->misi?></p>
-        <div>
-                <input type="radio" name="dipilih" value="<?= $b->no_urut ?>" required>
-              
               </div>
         <?php }?>
 </div>
