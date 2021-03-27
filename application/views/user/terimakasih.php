@@ -11,9 +11,8 @@
 </head>
 <body>
     <div class="col-sm-12 text-center" id="log">
-    <h1>Terimakasih telah berpartisipasi dalam PEMILWA tahun 2021</h1>
+    <h1><strong>Terimakasih telah berpartisipasi dalam PEMILWA tahun 2021</strong></h1>
     <label><a href="<?= base_url() ?>pemilwa/logout">Logout--></a></label>
     </div>
-    
 </body>
 </html>
