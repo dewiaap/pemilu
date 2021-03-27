@@ -23,7 +23,7 @@ class Pemilwa extends CI_Controller {
 	}
 	//dashboard admin
 	public function dashboard(){
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'admin') {
 		$data['pemilih_all'] = $this->m_pemilwa->get_count_pemilih();
 		$data['pemilih_done'] = $this->m_pemilwa->get_count_pemilih_done();
 		$prodi = $this->m_pemilwa->get_tabel('prodi');
@@ -40,7 +40,7 @@ class Pemilwa extends CI_Controller {
 	//admin
 	public function admin()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'admin') {
 		$data['admin'] = $this->m_pemilwa->get_tabel('admin');
 		$data['content_view'] = "admin/admin";
 		$this->load->view('admin/template', $data);}
@@ -130,7 +130,7 @@ class Pemilwa extends CI_Controller {
 	//paslon
 	public function paslon()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'admin') {
 		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['content_view'] = "admin/paslon";
@@ -278,7 +278,7 @@ class Pemilwa extends CI_Controller {
 	//bpm
 	public function bpm()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'admin') {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
 		$data['content_view'] = "admin/calonbpm";
@@ -417,7 +417,7 @@ class Pemilwa extends CI_Controller {
 	//pemilih
 	public function pemilih()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'admin') {
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$data['pemilih'] = $this->m_pemilwa->get_tabel('pemilih');
 		$data['content_view'] = "admin/pemilih";
@@ -525,7 +525,7 @@ class Pemilwa extends CI_Controller {
 
 	//add voting paslon
 	public function vote_paslon() {
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'user') {
 		$data['bem'] = $this->m_pemilwa->get_tabel('pasang_calon');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$this->load->view('user/vote_paslon', $data);}
@@ -548,7 +548,7 @@ class Pemilwa extends CI_Controller {
 	
 	//add voting bpm
 	public function vote_bpm() {
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login')&&$this->session->userdata('level') == 'user') {
 		$data['bpm'] = $this->m_pemilwa->get_tabel('calon_bpm');
 		$data['prodi'] = $this->m_pemilwa->get_tabel('prodi');
 		$this->load->view('user/vote_bpm', $data);

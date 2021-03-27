@@ -3,7 +3,7 @@
     <title></title>
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url();?>assets/css/style.css">
-
+    <link rel="icon" href="<?=base_url()?>assets/image/poros1.png">
     <style type="text/css">
       body{
         background-image:url('<?=base_url();?>assets/image/Astronomy.jpg');
@@ -29,7 +29,7 @@
         <div class="box" id="databem">
           <div class="row">
           <div class="col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0">
-            <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>">
+            <img src="<?= base_url() ?>/assets/image/paslon/<?= $b->gambar ?>" width="150" heigth="150">
             
             <h5 id="pasangan"> <?= $b->nama_pasangan ?></h5>
             <p id="prodi"> <?= $prodi[$b->id_prodi_ketua - 1]->prodi ?> & <?= $prodi[$b->id_prodi_wakil - 1]->prodi ?></p>

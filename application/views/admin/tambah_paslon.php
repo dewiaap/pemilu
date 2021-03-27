@@ -6,7 +6,7 @@
 
 <title></title>
 <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/css/bootstrap.min.css">
-
+<link rel="icon" href="<?=base_url()?>assets/image/poros1.png">
 </head>
     <body class="d-flex flex-column h-100">
     <!-- Page Content -->
